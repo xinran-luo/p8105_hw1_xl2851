@@ -79,6 +79,7 @@ plot_numeric=ggplot(hw11_df, aes(x=x, y=y, color=vec_numeric_2))+ geom_point()
 print(plot_numeric + ggtitle("plot of the numeric vector"))
 ```
 When D=0, dots are in dark blue. When D=1, dots are in light blue.
+The color scale for this plot looks continuous. From value 0 to 1, the color gradually changes from dark blue to light blue.
 
 ### 2.3.3 plot of the factor variable(vec_factor_2)
 ```{r}
