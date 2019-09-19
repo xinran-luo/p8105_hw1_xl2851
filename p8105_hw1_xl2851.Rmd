@@ -32,7 +32,7 @@ as.numeric(pull(hw1_df,vec_logical))
 as.numeric(pull(hw1_df,vec_char))
 as.numeric(pull(hw1_df,vec_factor))
 ```
-Logical and factor vector can be converted into numeric vector while character vector cannot. This can explain why character vector can not take the mean.
+Logical and factor vector can be converted into numeric vector while character vector cannot. This can explain why character vector can not take the mean.And this cannot explain why factor vector cannot take the mean.
 
 ## 1.4 second code crunk:convert and multiply
 ```{r echo=TRUE, results="hide",error=TRUE}
@@ -47,9 +47,9 @@ as.numeric(as.factor(pull(hw1_df,vec_logical)))*(pull(hw1_df,vec_numeric))
 hw11_df=tibble(
   x=rnorm(500, mean=0, sd=1),
   y=rnorm(500, mean=0, sd=1),
-  C=x+y>1,
-  D=as.numeric(C),
-  E=as.factor(C),
+  vec_logical_2=x+y>1,
+  vec_numeric_2=as.numeric(vec_logical_2),
+  vec_factor_2=as.factor(vec_logical_2),
 )
 ```
 
@@ -62,27 +62,27 @@ The median of x is `r median(pull(hw11_df,x))`
 
 The standard deviation of the x is `r sd(pull(hw11_df,x))`
 
-The proportion of cases for which x+y>1 is `r mean(pull(hw11_df,C))`
+The proportion of cases for which x+y>1 is `r mean(pull(hw11_df,vec_logical_2))`
 
 ## 2.3 plots
-### 2.3.1 plot of the logical variable(C)
+### 2.3.1 plot of the logical variable(vec_logical_2)
 ```{r}
-plot_logical=ggplot(hw11_df, aes(x=x, y=y, color=C))+ geom_point()
+plot_logical=ggplot(hw11_df, aes(x=x, y=y, color=vec_logical_2))+ geom_point()
 print(plot_logical + ggtitle("plot of the logical vector"))
 ggsave("scatter_plot.pdf", height = 4, width = 6)
 ```
 If "x+y>1" is true, the dots are in blue. If "x+y>1" is false, the dots are in red. 
 
-### 2.3.2 plot of the numeric variable(D)
+### 2.3.2 plot of the numeric variable(vec_numeric_2)
 ```{r}
-plot_numeric=ggplot(hw11_df, aes(x=x, y=y, color=D))+ geom_point()
+plot_numeric=ggplot(hw11_df, aes(x=x, y=y, color=vec_numeric_2))+ geom_point()
 print(plot_numeric + ggtitle("plot of the numeric vector"))
 ```
 When D=0, dots are in dark blue. When D=1, dots are in light blue.
 
-### 2.3.3 plot of the factor variable(E)
+### 2.3.3 plot of the factor variable(vec_factor_2)
 ```{r}
-plot_factor=ggplot(hw11_df, aes(x=x, y=y, color=E))+ geom_point()
+plot_factor=ggplot(hw11_df, aes(x=x, y=y, color=vec_factor_2))+ geom_point()
 print(plot_factor + ggtitle("plot of the factor vector"))
 ```
 If "x+y>1" is true, the dots are in blue. If "x+y>1" is false, the dots are in red. 
